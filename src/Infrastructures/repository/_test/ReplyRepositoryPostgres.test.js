@@ -7,9 +7,11 @@ const AddedReplyComment = require('../../../Domains/replies/entities/AddedReplyC
 const NotFoundError = require('../../../Commons/exceptions/NotFoundError');
 const ReplyRepositoryPostgres = require('../ReplyRepositoryPostgres');
 const AuthorizationError = require('../../../Commons/exceptions/AuthorizationError');
+const LikesTableTestHelper = require('../../../../tests/LikesTableTestHelper');
 
 describe('ThreadRepositoryPostgres', () => {
   beforeAll(async () => {
+    await LikesTableTestHelper.cleanTable();
     await RepliesTableTestHelper.cleanTable();
     await CommentsTableTestHelper.cleanTable();
     await ThreadsTableTestHelper.cleanTable();
