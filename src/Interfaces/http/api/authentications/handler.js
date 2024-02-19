@@ -43,7 +43,6 @@ class AuthenticationsHandler {
 
   async deleteAuthenticationHandler(request) {
     // eslint-disable-next-line no-underscore-dangle
-    console.log('hadir');
     const logoutUserUseCase = this._container.getInstance(LogoutUserUseCase.name);
     await logoutUserUseCase.execute(request.payload);
     return {
