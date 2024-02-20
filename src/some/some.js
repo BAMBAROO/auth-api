@@ -1,4 +1,7 @@
 function some() {
   return true;
 }
-module.exports = some;
+function some2() {
+  return false;
+}
+module.exports = { some, some2 };
