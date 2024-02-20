@@ -51,7 +51,7 @@ describe('JwtTokenManager', () => {
       const accessToken = await jwtTokenManager.createAccessToken({ username: 'dicoding' });
 
       // Action & Assert
-      await expect(jwtTokenManager.verifyRefreshToken(accessToken))
+      await expect(jwtTokenManager.verifyAccessToken(accessToken))
         .rejects
         .toThrow(InvariantError);
     });
