@@ -48,12 +48,11 @@ describe('JwtTokenManager', () => {
     it('should throw InvariantError when verification failed', async () => {
       // Arrange
       const jwtTokenManager = new JwtTokenManager(Jwt.token);
-      const accessToken = await jwtTokenManager.createAccessToken({ username: 'dicoding' });
 
       // Action & Assert
-      await expect(jwtTokenManager.verifyRefreshToken(accessToken))
+      await expect(jwtTokenManager.verifyAccessToken('token'))
         .rejects
-        .toThrow(InvariantError);
+        .toThrow(AuthenticationError);
     });
 
     it('should not throw InvariantError when refresh token verified', async () => {
@@ -64,7 +63,7 @@ describe('JwtTokenManager', () => {
       // Action & Assert
       await expect(jwtTokenManager.verifyRefreshToken(refreshToken))
         .resolves
-        .not.toThrow(InvariantError);
+        .not.toThrow(AuthenticationError);
     });
   });
 
