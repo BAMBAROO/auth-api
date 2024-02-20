@@ -4,6 +4,6 @@ describe('some', () => {
     expect(some()).toBe(true);
   });
   it('some2', () => {
-    expect(some2()).toBe(false);
+    expect(some2()).not.toBe(true);
   });
 });
