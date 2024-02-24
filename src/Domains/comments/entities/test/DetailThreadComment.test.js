@@ -7,6 +7,7 @@ describe('a DeleteThreadComment entities', () => {
       username: 'bryan athallah',
       content: 'content',
       is_deleted: true,
+      date: '',
     };
     expect(() => new DetailThreadComment(payload)).toThrowError(
       'DETAIL_THREAD_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY',
@@ -19,7 +20,8 @@ describe('a DeleteThreadComment entities', () => {
       username: 'bryan athallah',
       content: 'content',
       date: '01-01-2004',
-      is_deleted: 'true',
+      likeCount: '123',
+      is_deleted: true,
     };
     expect(() => new DetailThreadComment(payload)).toThrowError(
       'DETAIL_THREAD_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION',
@@ -32,6 +34,7 @@ describe('a DeleteThreadComment entities', () => {
       username: 'bryan athallah',
       content: 'content',
       date: '01-01-2004',
+      likeCount: 123,
       is_deleted: true,
     };
     const detailThreadComment = new DetailThreadComment(payload);
@@ -49,6 +52,7 @@ describe('a DeleteThreadComment entities', () => {
       username: 'bryan athallah',
       content: 'content',
       date: '01-01-2004',
+      likeCount: 123,
       is_deleted: false,
     };
     const detailThreadComment = new DetailThreadComment(payload);

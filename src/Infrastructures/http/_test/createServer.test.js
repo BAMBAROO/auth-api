@@ -1,37 +1,31 @@
 const createServer = require('../createServer');
 
-describe('HTTP server', () => {
-  it('should response 404 when request unregistered route', async () => {
-    // Arrange
+describe('createServer', () => {
+  it('should get error response', async () => {
     const server = await createServer({});
 
-    // Action
     const response = await server.inject({
       method: 'GET',
-      url: '/unregisteredRoute',
+      url: '/asdasd',
     });
 
-    // Assert
     expect(response.statusCode).toEqual(404);
   });
 
-  it('should handle server error correctly', async () => {
-    // Arrange
-    const requestPayload = {
-      username: 'dicoding',
-      fullname: 'Dicoding Indonesia',
-      password: 'super_secret',
+  it('should get error response', async () => {
+    const payload = {
+      username: 'asd',
+      fullname: 'asd asd',
+      password: 'asdasd',
     };
     const server = await createServer({}); // fake injection
 
-    // Action
     const response = await server.inject({
       method: 'POST',
       url: '/users',
-      payload: requestPayload,
+      payload,
     });
 
-    // Assert
     const responseJson = JSON.parse(response.payload);
     expect(response.statusCode).toEqual(500);
     expect(responseJson.status).toEqual('error');

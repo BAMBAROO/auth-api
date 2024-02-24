@@ -13,7 +13,7 @@ class ReplyRepositoryPostgres extends ReplyRepository {
 
   async repliesByThreadId(threadId) {
     const query = {
-      text: 'SELECT id, username, date, content, comment_id, is_deleted FROM replies WHERE thread_id = $1;',
+      text: 'SELECT id, username, date, content, comment_id, is_deleted FROM replies WHERE thread_id = $1 ORDER BY date;',
       values: [threadId],
     };
     const result = await this._pool.query(query);

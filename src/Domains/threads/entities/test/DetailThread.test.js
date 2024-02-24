@@ -19,6 +19,7 @@ describe('DetailThread Entities', () => {
             username: 'Bruce Wayne',
             content: 'content',
             date: 'now',
+            likeCount: 4,
             is_deleted: false,
           },
         ],
@@ -38,6 +39,7 @@ describe('DetailThread Entities', () => {
         username: 'Bruce Wayne',
         content: 'content',
         date: 'now',
+        likeCount: 4,
         replies: [
           {
             id: 'reply-001',
@@ -73,6 +75,7 @@ describe('DetailThread Entities', () => {
             username: 'Bruce Wayne',
             content: 'content',
             date: 'now',
+            likeCount: 4,
             is_deleted: true,
           },
         ],
@@ -93,6 +96,7 @@ describe('DetailThread Entities', () => {
         date: 'now',
         content: '**komentar telah dihapus**',
         username: 'Bruce Wayne',
+        likeCount: 4,
         replies: [],
       }];
 
@@ -125,6 +129,7 @@ describe('DetailThread Entities', () => {
             username: 'Bruce Wayne',
             content: 'content',
             date: 'now',
+            likeCount: 4,
             is_deleted: false,
           },
         ],
@@ -145,6 +150,7 @@ describe('DetailThread Entities', () => {
         date: 'now',
         content: 'content',
         username: 'Bruce Wayne',
+        likeCount: 4,
         replies: [
           {
             id: 'reply-001',
@@ -190,6 +196,7 @@ describe('DetailThread Entities', () => {
             username: 'Bruce Wayne',
             content: 'content',
             date: 'now',
+            likeCount: 4,
             is_deleted: false,
           },
         ],
@@ -209,6 +216,7 @@ describe('DetailThread Entities', () => {
         id: 'comment-001',
         date: 'now',
         content: 'content',
+        likeCount: 4,
         username: 'Bruce Wayne',
         replies: [],
       }];
@@ -244,6 +252,7 @@ describe('DetailThread Entities', () => {
             username: 'Bruce Wayne',
             content: 'content',
             date: 'now',
+            likeCount: 4,
             is_deleted: false,
           },
         ],
@@ -271,6 +280,7 @@ describe('DetailThread Entities', () => {
             date: 'now',
             content: 'content',
             username: 'Bruce Wayne',
+            likeCount: 4,
             replies: [
               {
                 id: 'reply-001',

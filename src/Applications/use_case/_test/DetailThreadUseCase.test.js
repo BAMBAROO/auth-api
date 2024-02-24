@@ -6,6 +6,7 @@ const Comments = require('../../../Domains/comments/entities/Comments');
 const Replies = require('../../../Domains/replies/entities/Replies');
 const ReplyRepositoryPostgres = require('../../../Infrastructures/repository/ReplyRepositoryPostgres');
 const CommentRepositoryPostgres = require('../../../Infrastructures/repository/CommentRepositoryPostgres');
+const LikesRepositoryPostgres = require('../../../Infrastructures/repository/LikesRepositoryPostgres');
 
 describe('DeteailThreadUseCase', () => {
   it('should orchestrating the detail thread action correctly', async () => {
@@ -27,6 +28,7 @@ describe('DeteailThreadUseCase', () => {
             username: 'Bruce Wayne',
             content: 'content',
             date: 'now',
+            likeCount: 4,
             is_deleted: false,
           },
         ],
@@ -46,6 +48,7 @@ describe('DeteailThreadUseCase', () => {
     const mockThreadRepository = new ThreadRepositoryPostgres();
     const mockReplyRepository = new ReplyRepositoryPostgres();
     const mockCommentRepository = new CommentRepositoryPostgres();
+    const mockLikeRepository = new LikesRepositoryPostgres();
 
     mockThreadRepository.threadById = jest
       .fn()
@@ -65,6 +68,9 @@ describe('DeteailThreadUseCase', () => {
     mockThreadRepository.checkThreadIdAvailability = jest
       .fn()
       .mockImplementation(() => Promise.resolve(true));
+    mockLikeRepository.likesByCommentId = jest
+      .fn()
+      .mockImplementation(() => Promise.resolve(4));
 
     const mockDetailThread = new DetailThread();
     // const mockResult = useCasePayload.thread;
@@ -77,6 +83,7 @@ describe('DeteailThreadUseCase', () => {
       threadRepository: mockThreadRepository,
       replyRepository: mockReplyRepository,
       commentRepository: mockCommentRepository,
+      likeRepository: mockLikeRepository,
     });
 
     const detailThread = await detailThreadUseCase.execute(threadId);
