@@ -1,4 +1,5 @@
 const { some, some2 } = require('./some');
+
 describe('some', () => {
   it('some', () => {
     expect(some()).toBe(true);

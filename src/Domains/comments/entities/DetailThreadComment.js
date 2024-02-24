@@ -10,14 +10,15 @@ class DetailThreadComment {
       ? '**komentar telah dihapus**'
       : payload.content;
     this.username = payload?.username;
+    this.likeCount = payload.likeCount;
     this.replies = [];
   }
 
   // eslint-disable-next-line class-methods-use-this
   _verifyPayload({
-    id, username, content, date, is_deleted,
+    id, username, content, date, is_deleted, likeCount,
   }) {
-    if (!id || !username || !content || !date) {
+    if (!id || !username || !content || !date || likeCount === undefined || likeCount === null) {
       throw new InvariantError('DETAIL_THREAD_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY');
     }
 
@@ -26,6 +27,7 @@ class DetailThreadComment {
       || typeof username !== 'string'
       || typeof content !== 'string'
       || typeof is_deleted !== 'boolean'
+      || typeof likeCount !== 'number'
     ) {
       throw new InvariantError(
         'DETAIL_THREAD_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION',

@@ -2,11 +2,7 @@ const UsersTableTestHelper = require('../../../../tests/UsersTableTestHelper');
 const pool = require('../../database/postgres/pool');
 const ThreadsTableTestHelper = require('../../../../tests/ThreadsTableTestHelper');
 const CommentsTableTestHelper = require('../../../../tests/CommentsTableTestHelper');
-const AddedThreadComment = require('../../../Domains/comments/entities/AddedThreadComment');
-const NotFoundError = require('../../../Commons/exceptions/NotFoundError');
-const CommentRepositoryPostgres = require('../CommentRepositoryPostgres');
 const RepliesTableTestHelper = require('../../../../tests/RepliesTableTestHelper');
-const AuthorizationError = require('../../../Commons/exceptions/AuthorizationError');
 const LikesTableTestHelper = require('../../../../tests/LikesTableTestHelper');
 const LikesRepositoryPostgres = require('../LikesRepositoryPostgres');
 
@@ -171,6 +167,29 @@ describe('LikesRepositoryPostgres', () => {
       await expect(likesRepositoryPostgres.checkLiked(payload))
         .resolves
         .toBe(true);
+    });
+  });
+
+  describe('likesByCommentId function', () => {
+    it('should return true', async () => {
+      function fakeIdGenerator() {
+        return '123';
+      }
+      const likesRepositoryPostgres = new LikesRepositoryPostgres(
+        pool,
+        fakeIdGenerator,
+      );
+      // await UsersTableTestHelper.addUser({});
+      await ThreadsTableTestHelper.addThread({});
+      await CommentsTableTestHelper.addComment({ threadId: 'thread-001' });
+      await LikesTableTestHelper.addLikes({});
+      await LikesTableTestHelper.addLikes({
+        id: 'likes-002',
+        userId: 'user-099',
+      });
+      const result = await likesRepositoryPostgres.likesByCommentId('comment-123');
+      await expect(result)
+        .toBe(2);
     });
   });
 });
